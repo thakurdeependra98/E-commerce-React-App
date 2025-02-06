@@ -4,8 +4,8 @@ import ProductSection from './ProductSection'
 
 const Home = () => {
   return (
-    <div className='w-screen'>
-      <Header/>
+    <div className='w-screen pt-[10vw]'>
+      {/* <Header/> */}
       <ProductSection/>
     </div>
   )

@@ -3,7 +3,7 @@ import Route from './routes/route'
 
 const App = () => {
   return (
-    <div>
+    <div className='bg-[#fff6f6] overflow-hidden'>
       <Route/>
     </div>
   )
