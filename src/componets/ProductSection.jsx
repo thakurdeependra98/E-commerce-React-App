@@ -7,7 +7,8 @@ const ProductSection = () => {
   return (
     <div className=' my-10 grid grid-cols-4 gap-10 px-20'>
       {data.products.map((item)=>(
-        <ProductCard key = {item.id}
+        <ProductCard 
+        key = {item.id}
         title ={item.title}
         description ={item.description}
         images = {item.image}
