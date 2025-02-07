@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
 import data from '../utils/data.json'
+import { useDispatch } from 'react-redux'
 
 const ProductSection = () => {
 
@@ -9,6 +10,7 @@ const ProductSection = () => {
       {data.products.map((item)=>(
         <ProductCard 
         key = {item.id}
+        item = {item}
         title ={item.title}
         description ={item.description}
         images = {item.image}
