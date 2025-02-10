@@ -15,6 +15,7 @@ const ProductSection = () => {
         description ={item.description}
         images = {item.image}
         price = {item.price}
+        oldPrice = {item.oldPrice}
          />
       ))}
     </div>
