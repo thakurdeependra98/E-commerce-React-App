@@ -3,6 +3,7 @@
   {
     "_id": 1,
     "title": "PU Leather Jacket",
+    "oldPrice": "70",
     "price": 150,
     "description": "Shangyan Men Long Sleeve Lapel Handsome Slim Fit PU Leather Jacket",
     "category": "men",
@@ -13,6 +14,7 @@
   {
     "_id": 2,
     "title": "Jacket with wollen hat",
+    "oldPrice": "50",
     "price": 70,
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     "category": "women",
