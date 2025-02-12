@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { signup } from "../store/reducers/authSlice";
 import user from '../utils/data.json'
+import { useDispatch, useSelector } from 'react-redux';
 
 const SignUpPage = ({setIsAuth}) => {
-  const [users, setUsers] = useState(user.users)
+  // const [users, setUsers] = useState(user.users)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+
   const {
     register,
     handleSubmit,
@@ -13,13 +18,17 @@ const SignUpPage = ({setIsAuth}) => {
   } = useForm();
 
   const handlerSubmit = (data) => {
-    setIsAuth(true);
-    setUsers((prevUsers) => [...prevUsers, {id: users.length + 1, name: data.username, email: data.email, password: data.password, role: data.role }]);
-    navigate('/');
-
-    console.log(users);
+    dispatch(signup({ username: data.username, email: data.email, role: data.role }));
     
   };
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      if (user.role === "buyer") navigate("/buyer");
+      if (user.role === "seller") navigate("/seller");
+      if (user.role === "admin") navigate("/admin");
+    }
+  }, [isAuthenticated, user, navigate]);
 
   return (
     <div className='w-screen h-screen flex items-center justify-center'>

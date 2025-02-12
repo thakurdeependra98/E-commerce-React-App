@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import data from '../utils/data.json'
+import { login } from '../store/reducers/authSlice'
+import { useDispatch, useSelector } from 'react-redux';
 
-const LoginPage = ({setIsAuth}) => {
+const LoginPage = () => {
 
-  const [user, setUser] = useState(null)
-
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const {
     register,
@@ -14,27 +14,27 @@ const LoginPage = ({setIsAuth}) => {
     formState: { errors },
   } = useForm();
 
-  const handlerLogin = (formData) => {
-    console.log(typeof formData.password);
-    const existUser = data.users.find(
-      (user) => user.name === formData.username && user.password === formData.password
-    );
-    
+  const {user, isAuthenticated, error} = useSelector((state) => state.auth);
 
-    if (existUser) {
-      setIsAuth(true);
-      setUser(existUser)
-      navigate('/');
-    } else {
-      alert('Invalid Username and password');
-    }
+  const handlerLogin = (formData) => {
+    dispatch(login({ email: formData.email }));
   };
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      if (user.role === "buyer") navigate("/buyer");
+      if (user.role === "seller") navigate("/seller");
+      if (user.role === "admin") navigate("/admin");
+    }
+  }, [isAuthenticated, user, navigate]);
+    
 
   return (
     <div className='w-screen h-screen flex items-center justify-center flex-col gap-10'>
       <div className='w-[23vw] border py-8 px-5 rounded-lg shadow-lg shadow-zinc-900/50 bg-white'>
         <div>
           <h1 className='text-3xl font-medium'>Login</h1>
+          {error && <p className="text-red-500">{error}</p>}
           <h1 className='text-lg font-normal mt-6 text-zinc-500 leading-5'>
             Welcome Back! Please login to your account
           </h1>
@@ -45,14 +45,14 @@ const LoginPage = ({setIsAuth}) => {
             className='flex flex-col w-[24vw] h-auto rounded-lg mt-10'
           >
             <label className='text-zinc-500 mb-3'>
-              <span className='text-red-600'>*</span> UserName:
+              <span className='text-red-600'>*</span> Email:
               <br />
               <input
                 className='border rounded px-2 w-[84%] outline-0 text-black'
-                type='text'
-                {...register('username', { required: 'Username is required' })}
+                type='email'
+                {...register('email', { required: 'Email is required' })}
               />
-              {errors.username && <p className='text-red-500'>{errors.username.message}</p>}
+              {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
             </label>
 
             <label className='text-zinc-500 mb-3'>
@@ -83,7 +83,7 @@ const LoginPage = ({setIsAuth}) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
 
+};
 export default LoginPage;
