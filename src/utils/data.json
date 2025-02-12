@@ -145,34 +145,88 @@
 
   ],
   
-  "users":[
-    {
-      "id": 101,
-      "name": "Alice Johnson",
-      "role": "buyer",
-      "email": "alice@example.com",
-      "password" : "1234",
-      "cart": [
-        { "productId": 2, "quantity": 1 },
-        { "productId": 10, "quantity": 2 }
-      ],
-      "wishlist": [3, 5]
-    },
-    {
-      "id": 102,
-      "name": "Bob Smith",
-      "role": "seller",
-      "email": "bob@example.com",
-      "cart": [],
-      "wishlist": []
-    },
-    {
-      "id": 103,
-      "name": "Admin",
-      "role": "admin",
-      "email": "admin@admin.com",
-      "cart": [],
-      "wishlist": []
-    }
-  ]
+  "users": {
+    "admins": [
+      {
+        "id": "admin_1",
+        "username": "superadmin",
+        "password": "5555",
+        "email": "admin@example.com",
+        "role": "admin",
+        "permissions": [
+          "manage_users",
+          "manage_products",
+          "manage_orders"
+        ]
+      },
+      {
+        "id": "admin_2",
+        "username": "contentmod",
+        "email": "moderator@example.com",
+        "role": "admin",
+        "permissions": [
+          "manage_products",
+          "manage_reviews"
+        ]
+      }
+    ],
+    "sellers": [
+      {
+        "id": "seller_1",
+        "username": "techstore",
+        "password": "2222",
+        "email": "tech.store@example.com",
+        "role": "seller",
+        "storeName": "Tech Haven",
+        "rating": 4.8,
+        "products": [
+          "prod_1",
+          "prod_2"
+        ],
+        "totalSales": 1250
+      },
+      {
+        "id": "seller_2",
+        "username": "fashionista",
+        "email": "fashion@example.com",
+        "role": "seller",
+        "storeName": "Fashion Plus",
+        "rating": 4.6,
+        "products": [
+          "prod_3",
+          "prod_4"
+        ],
+        "totalSales": 890
+      }
+    ],
+    "buyers": [
+      {
+        "id": "buyer_1",
+        "username": "shopaholic",
+        "email": "buyer1@example.com",
+        "role": "buyer",
+        "wishlist": [
+          "prod_1",
+          "prod_3"
+        ],
+        "cart": [
+          {
+            "productId": "prod_2",
+            "quantity": 2
+          }
+        ]
+      },
+      {
+        "id": "buyer_2",
+        "username": "smartshopper",
+        "email": "buyer2@example.com",
+        "role": "buyer",
+        "wishlist": [
+          "prod_2"
+        ],
+        "cart": []
+      }
+    ]
+  }
+  
 }

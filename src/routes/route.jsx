@@ -7,6 +7,10 @@ import Account from '../componets/Profile'
 import SignUpPage from '../componets/Signup'
 import LoginPage from '../componets/Login'
 import Header from '../componets/Header'
+import Buyer from '../componets/users/Buyer'
+import Seller from '../componets/users/Seller'
+import Admin from '../componets/users/Admin'
+import PrivateRoute from './PrivateRoutes'
 
 const route = () => {
 
@@ -25,8 +29,11 @@ const route = () => {
           <Route path='/cart'element = {<Cart/>} ></Route>
           <Route path='/wishlist'element = {<Wishlist/>} ></Route>
           <Route path='/account'element = {<Account/>} ></Route>
-          <Route path='/login'element = {<LoginPage setIsAuth = {setIsAuth} />} ></Route>
-          <Route path='/signup'element = {<SignUpPage setIsAuth = {setIsAuth}/>} ></Route>
+          <Route path='/buyer'element = {<PrivateRoute role = "buyer"><Buyer/></PrivateRoute>} ></Route>
+          <Route path='/seller'element = {<PrivateRoute role = "seller"><Seller/></PrivateRoute>} ></Route>
+          <Route path='/admin'element = {<PrivateRoute role = "admin"><Admin/></PrivateRoute>} ></Route>
+          <Route path='/login'element = {<LoginPage/>} ></Route>
+          <Route path='/signup'element = {<SignUpPage/>} ></Route>
         </Routes>
       </BrowserRouter>
     </>
