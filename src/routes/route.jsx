@@ -26,8 +26,8 @@ const route = () => {
         <Header isAuth = {isAuth} logoutHandler = {logoutHandler}/>
         <Routes>
           <Route path='/'element = {<Home/>} ></Route>
-          <Route path='/cart'element = {<Cart/>} ></Route>
-          <Route path='/wishlist'element = {<Wishlist/>} ></Route>
+          <Route path='/cart'element = {<PrivateRoute><Cart/></PrivateRoute>} ></Route>
+          <Route path='/wishlist'element = {<PrivateRoute><Wishlist/></PrivateRoute>} ></Route>
           <Route path='/account'element = {<Account/>} ></Route>
           <Route path='/buyer'element = {<PrivateRoute role = "buyer"><Buyer/></PrivateRoute>} ></Route>
           <Route path='/seller'element = {<PrivateRoute role = "seller"><Seller/></PrivateRoute>} ></Route>

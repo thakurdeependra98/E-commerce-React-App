@@ -3,7 +3,7 @@
   {
     "_id": 1,
     "title": "PU Leather Jacket",
-    "oldPrice": "70",
+    "oldPrice": "300",
     "price": 150,
     "description": "Shangyan Men Long Sleeve Lapel Handsome Slim Fit PU Leather Jacket",
     "category": "men",
@@ -14,7 +14,7 @@
   {
     "_id": 2,
     "title": "Jacket with wollen hat",
-    "oldPrice": "50",
+    "oldPrice": "140",
     "price": 70,
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
     "category": "women",
@@ -150,7 +150,7 @@
       {
         "id": "admin_1",
         "username": "superadmin",
-        "password": "5555",
+        "password": 5555,
         "email": "admin@example.com",
         "role": "admin",
         "permissions": [
@@ -174,7 +174,7 @@
       {
         "id": "seller_1",
         "username": "techstore",
-        "password": "2222",
+        "password": 2222,
         "email": "tech.store@example.com",
         "role": "seller",
         "storeName": "Tech Haven",
@@ -203,6 +203,7 @@
       {
         "id": "buyer_1",
         "username": "shopaholic",
+        "password": 1111,
         "email": "buyer1@example.com",
         "role": "buyer",
         "wishlist": [
