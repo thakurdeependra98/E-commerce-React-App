@@ -5,9 +5,14 @@ import { Navigate } from "react-router-dom";
 const PrivateRoute = ({ role, children }) => {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
 
-  if (!isAuthenticated || user.role !== role) {
+  if (!isAuthenticated) {
     return <Navigate to="/" />;
   }
+
+  if (role && user?.role !== role) {
+    return <Navigate to="/" />;
+  }
+
   return children;
 };
 

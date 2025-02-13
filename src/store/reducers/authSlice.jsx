@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   isAuthenticated: false,
   error: null,
+  users: usersData.users || [],
 };
 
 const authSlice = createSlice({
@@ -26,6 +27,11 @@ const authSlice = createSlice({
       } else {
         state.error = "Invalid email!";
       }
+
+      if (action.payload.role === "admin") {
+        state.users = usersData; // Store all users in state
+      }
+
     },
     logout: (state) => {
       state.user = null;
@@ -44,6 +50,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.error = null;
     },
+    
   },
 });
 

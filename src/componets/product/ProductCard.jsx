@@ -8,12 +8,12 @@ import {
   addToCart, 
   addWishlist, 
   removeWishlist 
-} from "../store/reducers/productSlice";
+} from "../../store/reducers/productSlice";
 
 
 const ProductCard = ({product, title, description, images, price, oldPrice}) => {
 
-  const cart = useSelector((state) => state.products.cart);
+  // const cart = useSelector((state) => state.products.cart);
   const wishlist = useSelector((state) => state.products.wishlist);
 
   // const cartItem = cart.find((item) => item.id === product.id);
@@ -35,7 +35,7 @@ const ProductCard = ({product, title, description, images, price, oldPrice}) => 
       dispatch(removeWishlist(product._id)); // Remove from wishlist
       console.log(`Removed from wishlist: ${product.title}`);
     } else {
-      dispatch(addWishlist(product)); // Add to wishlist
+      dispatch(addWishlist(product)); // Add to wishlist    
       console.log(`Added to wishlist: ${product.title}`);
     }
   };

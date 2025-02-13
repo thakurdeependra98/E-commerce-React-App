@@ -46,6 +46,10 @@ const productSlice = createSlice({
     removeWishlist: (state, action) => {
       state.wishlist = state.wishlist.filter((item) => item._id !== action.payload);
     },
+    addProduct: (state, action) => {
+      const newProduct = action.payload;
+      state.products.push({ ...newProduct, _id: Date.now() }); // Assign unique ID
+    },
   },
 });
 
@@ -56,6 +60,7 @@ export const {
   decreaseQuantity, 
   addWishlist, 
   removeWishlist,
+  addProduct
 } = productSlice.actions;
 
 export default productSlice.reducer;
