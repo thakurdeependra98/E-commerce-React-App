@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../store/reducers/productSlice";
+import ProductCard from "./ProductCard";
 
 const ProductAdd = () => {
   const dispatch = useDispatch();
+  const [item, setItem] = useState([])
   const user = useSelector((state) => state.auth.user);
 
   // Show form only for sellers
@@ -24,11 +26,13 @@ const ProductAdd = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addProduct(product));
+    setItem([...item, product])
     setProduct({ title: "", price: "", image: "", description:"", oldPrice:"" });
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
+    <div className="w-screen flex items-center justify-center flex-col min-h-screen pt-[8vw]">
+      <div className="w-screen p-6 max-w-md mx-auto">
       <h2 className="text-xl font-bold mb-4">Add New Product</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -80,6 +84,20 @@ const ProductAdd = () => {
           Add Product
         </button>
       </form>
+      </div>
+      <div className="w-screen px-[5vw] py-[5vh] grid grid-cols-4 gap-10">
+        {item.map((item)=>(
+          <ProductCard
+          key = {item.id}
+          product = {item}
+          title ={item.title}
+          description ={item.description}
+          images = {item.image}
+          price = {item.price}
+          oldPrice = {item.oldPrice}
+          />
+        ))}
+      </div>
     </div>
   );
 };
