@@ -8,8 +8,7 @@ import SearchBar from './Search';
 const Header = () => {
   // const [search, setSearch] = useState("");
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-
-  console.log(user);
+  const { cart, wishlist } = useSelector((state) => state.products);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,8 +29,16 @@ const Header = () => {
         <div className='flex gap-8 mr-20 items-center'>
           {user && user.role === "buyer" ? (
             <div className='flex gap-8'>
-              <Link to= "/cart"><h4 className='flex items-center gap-2 text-[1.2vw] font-normal hover:text-[#4f4f4f]'>Cart </h4></Link>
-              <Link to ='/wishlist' ><h4 className='flex items-center gap-2 text-[1.2vw] font-normal hover:text-[#4f4f4f]'>Wishlist </h4></Link>
+              <Link to= "/cart"><h4 className='flex items-center gap-2 text-[1.2vw] font-normal hover:text-[#4f4f4f] relative'>Cart {cart.length > 0 && (
+                    <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute -top-4 -right-4">
+                      {cart.length}
+                    </span>
+                  )} </h4></Link>
+              <Link to ='/wishlist' ><h4 className='flex items-center gap-2 text-[1.2vw] font-normal hover:text-[#4f4f4f] relative'>Wishlist {wishlist.length > 0 && (
+                    <span className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute -top-4 -right-4">
+                      {wishlist.length}
+                    </span>
+                  )} </h4></Link>
             </div>
         ): !user ? (
           <div className='flex gap-8'>
