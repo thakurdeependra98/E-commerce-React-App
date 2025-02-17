@@ -13,10 +13,8 @@ import {
 
 const ProductCard = ({product, title, description, images, price, oldPrice}) => {
 
-  // const cart = useSelector((state) => state.products.cart);
   const wishlist = useSelector((state) => state.products.wishlist);
 
-  // const cartItem = cart.find((item) => item.id === product.id);
   
   const isWishlisted = wishlist.some((item) => item._id === product._id);
 

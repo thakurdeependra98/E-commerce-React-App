@@ -51,8 +51,8 @@ const Cart = () => {
                           </div>
                           <div className='w-full flex justify-between '>
                             <div className='flex gap-4 items-center'>
-                              <h3 className='text-[1.2vw]'> ${item.price}</h3>
-                              <h3 className='line-through text-zinc-500 text-[1vw]'> ${item.oldPrice}</h3>
+                              <h3 className='text-[1.2vw]'> ${item.price * item.quantity}  </h3>
+                              <h3 className='line-through text-zinc-500 text-[1vw]'> ${item.oldPrice * item.quantity}</h3>
                             </div>
                             <div className='flex items-center gap-8'>
                               <h3 onClick={() => dispatch(addWishlist(item))} className='text-[1.2vw] text-zinc-500 flex gap-2 items-center'> Move To Wishlist</h3>
