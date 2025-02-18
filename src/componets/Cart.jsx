@@ -17,6 +17,9 @@ const Cart = () => {
   const shopNow = () =>{
     navigate("/")
   }
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
 
   return (
     <>
@@ -55,7 +58,7 @@ const Cart = () => {
                               <h3 className='line-through text-zinc-500 text-[1vw]'> ${item.oldPrice * item.quantity}</h3>
                             </div>
                             <div className='flex items-center gap-8'>
-                              <h3 onClick={() => dispatch(addWishlist(item))} className='text-[1.2vw] text-zinc-500 flex gap-2 items-center'> Move To Wishlist</h3>
+                              <h3 onClick={() => dispatch(addWishlist(item))} className='text-[1.2vw] text-zinc-500 flex gap-2 items-center'><IoMdHeartEmpty/> Move To Wishlist</h3>
                               <h3 onClick={() => dispatch(removeFromCart(item._id))} className='text-[1.2vw] text-zinc-500 flex gap-2 items-center'><AiOutlineDelete /> Remove</h3>
                             </div>
                           </div>
@@ -66,16 +69,23 @@ const Cart = () => {
                 )
               }
           </div>
-          <div className="w-[25vw] h-[40vh] bg-cyan-100 flex flex-col p-4 m-4 rounded ">
+          <div className="w-[25vw] h-auto bg-cyan-100 flex flex-col p-4 m-4 rounded ">
             <h1 className='text-[2vw] text-center mb-4'>Order Summary</h1>
             <div className=' h-full flex flex-col justify-between'>
                 <h3 className='text-[1.1vw] text-zinc-500'>Total Bag Items({cartItems.length})</h3>
               <div>
+                <div className='my-3'>
+                  {cartItems.map((item, index) => (
+                    <p key={index} className="text-[1.1vw] text-zinc-600">
+                      {item.title} × {item.quantity}
+                    </p>
+                  ))}
+                </div>
                 <div className='flex justify-between my-[2vh]'>
                   <h3 className='text-[1.5vw]'>Payable Amount : </h3>
                   <h3>$ {totalPrice.toFixed(2)}</h3>
                 </div>
-                <button className='w-full text-[1.2vw] bg-blue-700 px-4 py-1 text-white rounded'>Checkout</button>
+                <button onClick={handleCheckout} className='w-full text-[1.2vw] bg-blue-700 px-4 py-1 text-white rounded'>Checkout</button>
               </div>
             </div>
           </div>

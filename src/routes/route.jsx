@@ -11,6 +11,7 @@ import Buyer from '../componets/users/Buyer'
 import Seller from '../componets/users/Seller'
 import Admin from '../componets/users/Admin'
 import PrivateRoute from './PrivateRoutes'
+import Checkout from '../componets/Checkout'
 
 const route = () => {
 
@@ -34,6 +35,7 @@ const route = () => {
           <Route path='/admin'element = {<PrivateRoute role = "admin"><Admin/></PrivateRoute>} ></Route>
           <Route path='/login'element = {<LoginPage/>} ></Route>
           <Route path='/signup'element = {<SignUpPage/>} ></Route>
+          <Route path="/checkout" element={<PrivateRoute><Checkout/></PrivateRoute>} />
         </Routes>
       </BrowserRouter>
     </>

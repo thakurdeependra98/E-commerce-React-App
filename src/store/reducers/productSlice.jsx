@@ -48,7 +48,10 @@ const productSlice = createSlice({
     },
     addProduct: (state, action) => {
       const newProduct = action.payload;
-      state.products.push({ ...newProduct, _id: Date.now() }); // Assign unique ID
+      state.products.push({ ...newProduct, _id: Date.now() }); 
+    },
+    clearCart: (state) => {
+      state.cart = []; 
     },
   },
 });
@@ -60,7 +63,8 @@ export const {
   decreaseQuantity, 
   addWishlist, 
   removeWishlist,
-  addProduct
+  addProduct,
+  clearCart
 } = productSlice.actions;
 
 export default productSlice.reducer;
